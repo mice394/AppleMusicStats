@@ -53,10 +53,10 @@ class NumberedCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setInformation(number: Int, title: String, subtitle: String) {
+    func setInformation(number: Int, title: String, subtitle: String, mediaType: MediaType) {
         numberLabel.text = "\(number)"
         titleLabel.text = title.uppercased()
-        subtitleLabel.text = subtitle.uppercased()
+        subtitleLabel.text = subtitle.uppercased() + " MINUTES PLAYED"
     }
 
     func setUpContraints() {

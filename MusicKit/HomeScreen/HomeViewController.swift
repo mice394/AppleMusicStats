@@ -34,28 +34,31 @@ class HomeViewController: UIViewController {
     private lazy var topLeftQuadView: UIView = {
         let view = SummaryQuadCard(type: .playTime)
         view.titleLabel.text = presenter?.topLeftQuadTitle
-        view.textLabel.text = "Hello World"
+        let minutesListened = presenter?.minutesListened ?? 123
+        view.textLabel.text = "\(minutesListened) mins"
         return view
     }()
 
     private lazy var topRightQuadView: UIView = {
         let view = SummaryQuadCard(type: .topGenre)
         view.titleLabel.text = presenter?.topRightQuadTitle
-        view.textLabel.text = "Hello World"
+        view.textLabel.text = presenter?.topGenre
         return view
     }()
 
     private lazy var bottomLeftQuadView: UIView = {
         let view = SummaryQuadCard(type: .newSongs)
         view.titleLabel.text = presenter?.bottomLeftQuadTitle
-        view.textLabel.text = "Hello World"
+        let newSongs = presenter?.newSongs ?? 12
+        view.textLabel.text = "\(newSongs)"
         return view
     }()
 
     private lazy var bottomRightQuadView: UIView = {
         let view = SummaryQuadCard(type: .newArtists)
         view.titleLabel.text = presenter?.bottomRightQuadTitle
-        view.textLabel.text = "Hello World"
+        let newArtists = presenter?.newArtists ?? 12
+        view.textLabel.text = "\(newArtists)"
         return view
     }()
 
@@ -99,8 +102,8 @@ class HomeViewController: UIViewController {
             screenScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             screenScrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-            screenView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),//screenScrollView.leadingAnchor),
-            screenView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),//screenScrollView.trailingAnchor),
+            screenView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            screenView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             screenView.topAnchor.constraint(equalTo: screenScrollView.topAnchor),
             screenView.bottomAnchor.constraint(equalTo: screenScrollView.bottomAnchor),
             screenView.heightAnchor.constraint(equalToConstant: 1080), // TODO: Investigate why this is necessary for scrolling (1080 == height of screen to top of tab bar)
@@ -141,30 +144,16 @@ class HomeViewController: UIViewController {
             thisYearCardview.heightAnchor.constraint(equalToConstant: 380),
 
         ])
-
-//        topRightQuadView.isHidden = true
-//        topRightText.isHidden = true
-//        topRightQuadTitle.isHidden = true
     }
 }
 
 @available(iOS 15.0, *)
 extension HomeViewController: PresentNUXDelegate {
-//    func showMyViewControllerInACustomizedSheet() {
-//        let viewControllerToPresent = MyViewController()
-//        if let sheet = viewControllerToPresent.sheetPresentationController {
-//            sheet.detents = [.medium(), .large()]
-//            sheet.largestUndimmedDetentIdentifier = .medium
-//            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-//            sheet.prefersEdgeAttachedInCompactHeight = true
-//            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-//        }
-//        present(viewControllerToPresent, animated: true, completion: nil)
-//    }
     func openNUX() {
         print("openNux")
+        let title = "Yearly Top Tens Calculations"
         let subtext = "The statistics for your yearly top tens is computed within the app. Therefore, if you haven’t had this app since January 1, 2021, then the statistics will be not be completely accurate as it begins accumulating the data from the day you download it"
-        let NUXSheet = BottomSheet(image: nil, title: "Hello", subtext: subtext)
+        let NUXSheet = BottomSheet(image: nil, title: title, subtext: subtext)
         if let sheet = NUXSheet.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.largestUndimmedDetentIdentifier = .medium

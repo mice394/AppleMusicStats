@@ -13,6 +13,12 @@ enum TopTenType {
     case thisYear
 }
 
+enum MediaType {
+    case songs
+    case albums
+    case artists
+}
+
 protocol PresentNUXDelegate: AnyObject {
     func openNUX()
 }
@@ -71,11 +77,13 @@ class TopTensCard: UIView {
     }()
 
     let type: TopTenType
+    var mediaType: MediaType
 
     public init(type: TopTenType, buttonDelegate: PresentNUXDelegate? = nil) {
         self.type = type
         self.data = songs ?? []
         self.buttonDelegate = buttonDelegate
+        self.mediaType = .songs
 
         super.init(frame: .zero)
 
@@ -128,19 +136,22 @@ class TopTensCard: UIView {
     @objc func segmentControl(_ segmentedControl: UISegmentedControl) {
        switch (segmentedControl.selectedSegmentIndex) {
           case 0:
-            print("Songs")
+           print("Songs")
            refreshTableView(segmentIndex: 0)
-          case 1:
-            print("Albums")
+           mediaType = .songs
+       case 1:
+           print("Albums")
            refreshTableView(segmentIndex: 1)
-          case 2:
-            print("Artists")
+           mediaType = .albums
+       case 2:
+           print("Artists")
            refreshTableView(segmentIndex: 2)
+           mediaType = .artists
        default:
-        break
+           break
        }
     }
-
+    
     @objc func buttonAction(_ sender:UIButton!) {
         print("infoNUXButton tapped")
         buttonDelegate?.openNUX()
@@ -179,7 +190,7 @@ extension TopTensCard: UITableViewDataSource {
         guard let title = data[indexPath.row].name, let subtitle = data[indexPath.row].numListens else {
             return cell
         }
-        cell.setInformation(number: number, title: title, subtitle: "\(subtitle)")
+        cell.setInformation(number: number, title: title, subtitle: "\(subtitle)", mediaType: mediaType)
 
         return cell
     }

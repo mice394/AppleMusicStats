@@ -87,7 +87,7 @@ class BottomSheet: UIViewController {
         if let _ = subtextLabel.text {
             view.addSubviews([subtextLabel])
             NSLayoutConstraint.activate([
-                subtextLabel.topAnchor.constraint(equalTo: currentTopAnchor, constant: 14),
+                subtextLabel.topAnchor.constraint(equalTo: currentTopAnchor, constant: 28),
                 subtextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
                 subtextLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             ])
