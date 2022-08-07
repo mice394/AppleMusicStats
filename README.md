@@ -7,6 +7,8 @@
 * [Designs](#designs)
   * Figma
 * [Demo](#demo)
+ * Current Progress
+* [ToDo](#todo)
 
 ### Concept
 #### Overview
@@ -29,4 +31,15 @@ All designs are tentative and colour scheme will definitely be changed later on
 |Settings| Work-In-Progess|
 
 ### Demo
+#### Current Progress
 ![AppleMusicStatsDemo](https://user-images.githubusercontent.com/54608927/183277145-702f1234-fe6e-4796-9ef2-6981688e7e68.gif)
+
+### ToDo
+1. Add API calls to MusicKit
+2. Fetch user data and convert that into `Song`, `Artist`, `Album` objects and add to appropriate arrays
+3. Sort the arrays based on number of music played
+4. Populate homepage data with real data
+5. Create UI for Post screen
+6. Figure out how to generate the images using the data
+7. Create settings page
+8. Revisit colour scheme and make changes in code where necessary
