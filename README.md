@@ -7,7 +7,7 @@
 * [Designs](#designs)
   * Figma
 * [Demo](#demo)
- * Current Progress
+  * Current Progress
 * [ToDo](#todo)
 
 ### Concept
